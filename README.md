@@ -26,3 +26,23 @@ select `h` option to choose the next character of that plaintext, and we can
 recalculate to suggest the next character you need to select in the in target 
 ciphertext.
 
+### How
+
+How can we get the next character of other plaintexts on having guessed next 
+character of target plaintext:
+```
+ciphertext_1 = plaintext_1 XOR key
+ciphertext_2 = plaintext_2 XOR key
+
+# XOR 2 ciphertexts together, we will have the same result on XOR-ing 2 plaintexts
+xor_result_1 = ciphertext_1 XOR ciphertext_2
+assert xor_result_1 == plaintext_1 XOR plaintext
+
+# So if we know one plaintext (the guessed target one), we can know the other using
+xor_result_2 = xor_result_1 XOR plaintext_1
+assert xor_result_2 == plaintext_2
+```
+
+This technique is applied for both step 2.a and 2.b.
+
+### Thanks for reading! 
